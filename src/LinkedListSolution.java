@@ -127,6 +127,57 @@ public class LinkedListSolution {
 //        return addTwoNumbers(l1, l2, 0);
     }
 
+    /**
+     * Remove all elements from a linked list of integers that have value val.
+     * Example
+     * Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
+     * Return: 1 --> 2 --> 3 --> 4 --> 5
+     */
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode tmpHead = new ListNode(0);
+        ListNode prev = tmpHead;
+        tmpHead.next = head;
+        ListNode curr = head;
+        while (curr != null) {
+            if (curr.val == val) {
+                prev.next = curr.next;
+            } else {
+                prev = prev.next;
+            }
+            curr = curr.next;
+        }
+        return tmpHead.next;
+    }
+
+    /**
+     * 82.Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+     * For example,
+     * Given 1->2->3->3->4->4->5, return 1->2->5.
+     * Given 1->1->1->2->3, return 2->3.
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode tmpHead = new ListNode(0);
+        tmpHead.next = head;
+        ListNode prev = tmpHead;
+        ListNode curr = head;
+
+        while (curr != null) {
+            if (curr.next != null && curr.val == curr.next.val) {
+                curr = curr.next;
+                continue;
+            }
+
+            if (prev.next == curr) {
+                prev = curr;
+            } else {
+                prev.next = curr.next;
+            }
+            curr = curr.next;
+        }
+
+        return tmpHead.next;
+    }
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2, int add) {
 
         if (l1 == null && l2 == null && add == 0) {
@@ -166,6 +217,64 @@ public class LinkedListSolution {
         return node;
     }
 
+    /**
+     * 19.Given a linked list, remove the nth node from the end of list and return its head.
+     * For example,
+     * Given linked list: 1->2->3->4->5, and n = 2.
+     * After removing the second node from the end, the linked list becomes 1->2->3->5.
+     */
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode tmpHead = new ListNode(0);
+        tmpHead.next = head;
+        ListNode first = tmpHead;
+        ListNode second = tmpHead;
+
+        for (int i = 0; i <= n; i++) {
+            second = second.next;
+        }
+
+        while (second != null) {
+            first = first.next;
+            second = second.next;
+        }
+
+        first.next = first.next.next;
+
+        return tmpHead.next;
+    }
+
+    /**
+     * 61.Given a list, rotate the list to the right by k places, where k is non-negative.
+     * Example:
+     * Given 1->2->3->4->5->NULL and k = 2,
+     * return 4->5->1->2->3->NULL.
+     */
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+
+        ListNode tmpHead = new ListNode(0);
+        tmpHead.next = head;
+        ListNode fastNode = tmpHead;
+        ListNode slowNode = tmpHead;
+
+
+        int i;
+        for (i = 0; fastNode.next != null; i++) {
+            fastNode = fastNode.next;
+        }
+
+        for (int j = i - k % i; j > 0; j--) {
+            slowNode = slowNode.next;
+        }
+
+        fastNode.next = tmpHead.next;
+        tmpHead.next = slowNode.next;
+        slowNode.next = null;
+
+        return tmpHead.next;
+    }
 
     private static class ListNode {
         int val;
@@ -179,7 +288,33 @@ public class LinkedListSolution {
     public static void main(String[] args) {
 //        reverseBetweenTest();
 //        swapPairsTest();
-        addTwoNumbersTest();
+//        addTwoNumbersTest();
+//        removeElementsTest();
+        rotateRightTest();
+    }
+
+    private static void removeElementsTest() {
+        LinkedListSolution solution = new LinkedListSolution();
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(6);
+        ListNode node4 = new ListNode(3);
+        ListNode node5 = new ListNode(4);
+        ListNode node6 = new ListNode(5);
+        ListNode node7 = new ListNode(6);
+
+//        node1.next = node2;
+//        node2.next = node3;
+//        node3.next = node4;
+//        node4.next = node5;
+//        node5.next = node6;
+//        node6.next = node7;
+
+        ListNode head = solution.removeElements(node1, 1);
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
     }
 
     private static void swapPairsTest() {
@@ -245,6 +380,26 @@ public class LinkedListSolution {
         LinkedListSolution solution = new LinkedListSolution();
         ListNode head = solution.addTwoNumbers(a1, b1);
 
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+    }
+
+    private static void rotateRightTest() {
+        LinkedListSolution solution = new LinkedListSolution();
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+        ListNode node5 = new ListNode(5);
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+
+
+        ListNode head = solution.rotateRight(null, 0);
         while (head != null) {
             System.out.println(head.val);
             head = head.next;
