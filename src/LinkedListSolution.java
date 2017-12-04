@@ -4,7 +4,7 @@
 public class LinkedListSolution {
 
     /**
-     * Given a linked list, swap every two adjacent nodes and return its head.
+     * 24.Given a linked list, swap every two adjacent nodes and return its head.
      * For example,
      * Given 1->2->3->4, you should return the list as 2->1->4->3.
      * Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
@@ -46,7 +46,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * Reverse a linked list from position m to n. Do it in-place and in one-pass.
+     * 92.Reverse a linked list from position m to n. Do it in-place and in one-pass.
      * For example:
      * Given 1->2->3->4->5->NULL, m = 2 and n = 4,
      * return 1->4->3->2->5->NULL.
@@ -87,7 +87,7 @@ public class LinkedListSolution {
 
 
     /**
-     * You are given two non-empty linked lists representing two non-negative integers.
+     * 2.You are given two non-empty linked lists representing two non-negative integers.
      * The digits are stored in reverse order and each of their nodes contain a single digit.
      * Add the two numbers and return it as a linked list.
      * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
@@ -128,7 +128,7 @@ public class LinkedListSolution {
     }
 
     /**
-     * Remove all elements from a linked list of integers that have value val.
+     * 203.Remove all elements from a linked list of integers that have value val.
      * Example
      * Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
      * Return: 1 --> 2 --> 3 --> 4 --> 5
