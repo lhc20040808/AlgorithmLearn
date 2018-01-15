@@ -8,7 +8,7 @@ public class EightQueens {
     private int[] array = new int[8];
 
 
-    public void egithQueens(int row) {
+    public void eightQueen(int row) {
         if (row == 8) {
             PrintUtils.printArray(array);
             System.out.println();
@@ -18,7 +18,7 @@ public class EightQueens {
         for (int i = 0; i < 8; i++) {
             array[row] = i;
             if (judge(row)) {
-                egithQueens(row + 1);
+                eightQueen(row + 1);
             }
         }
     }
@@ -37,6 +37,6 @@ public class EightQueens {
 
     public static void main(String[] args) {
         EightQueens eightQueens = new EightQueens();
-        eightQueens.egithQueens(0);
+        eightQueens.eightQueen(0);
     }
 }

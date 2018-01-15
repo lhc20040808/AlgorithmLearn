@@ -2,7 +2,8 @@
 public class DivideAndConquer {
 
     public static void main(String[] args) {
-        int[] array = {5, 7, 6, 3, 12, 9, 2, 10};
+        int[] array = {5, 7, 6, 3, 12, 9, 6, 2, 10};
+        quickSort(array, 0, array.length);
 //        insertSort(array);
 //        shellSort(array, 3);
 //        shellSort(array, 1);
@@ -51,35 +52,28 @@ public class DivideAndConquer {
         int left = start;
         int right = end - 1;
         int tmp = array[start];
-        boolean isMoveLeft = false;
+        int t;
 
         while (left < right) {
 
-            if (!isMoveLeft) {
 
-                while (array[right] > tmp && left < right) {
-                    right--;
-                }
-
-                if (left < right) {
-                    array[left++] = array[right];
-                    isMoveLeft = true;
-                }
-
-            } else {
-
-                while (array[left] < tmp && left < right) {
-                    left++;
-                }
-
-                if (left < right) {
-                    array[right--] = array[left];
-                    isMoveLeft = false;
-                }
-
+            while (array[right] >= tmp && left < right) {
+                right--;
             }
-        }
 
+            while (array[left] <= tmp && left < right) {
+                left++;
+            }
+
+            if (left < right) {
+                t = array[left];
+                array[left] = array[right];
+                array[right] = t;
+            }
+
+
+        }
+        array[start] = array[left];
         array[left] = tmp;
         quickSort(array, start, left);
         quickSort(array, left + 1, end);
